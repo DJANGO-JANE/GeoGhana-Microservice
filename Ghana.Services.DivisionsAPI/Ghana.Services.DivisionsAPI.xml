@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ghana.Services.DivisionsAPI</name>
+    </assembly>
+    <members>
+        <member name="T:Ghana.Services.DivisionsAPI.Controllers.CitiesController">
+            <summary>
+            Cities in DivisionsAPI
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.CitiesController.Get">
+            <summary>
+            Gets list of all Cities in DivisionsAPI
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.CitiesController.SearchCityLike(System.String)">
+            <summary>
+            Query for City using all or part of name
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.CitiesController.SearchCityByName(System.Int32)">
+            <summary>
+            Search City by city code
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.CitiesController.AddCityInfo(Ghana.Services.DivisionsAPI.DTOs.CityAdd)">
+            <summary>
+            Add new City to DivisionsAPI
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.CitiesController.UpdateCityInfo(System.Int32,Ghana.Services.DivisionsAPI.DTOs.CityUpdate)">
+            <summary>
+            Insert City to DivisionsAPI
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.CitiesController.PartialUpdateCity(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Ghana.Services.DivisionsAPI.DTOs.CityUpdate})">
+            <summary>
+            Modify part of City information
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.CitiesController.DeleteCity(System.Int32)">
+            <summary>
+            Remove City from DivisionsAPI.
+            </summary>
+        </member>
+        <member name="T:Ghana.Services.DivisionsAPI.Controllers.LocalitiesController">
+            <summary>
+            Localities in GeoGhana API
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.LocalitiesController.Get">
+            <summary>
+            Gets list of all Localities in GeoGhana API
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.LocalitiesController.FindByPostCode(System.String)">
+            <summary>
+            Find a Locality in Ghana using postcode
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.LocalitiesController.SearchLocalityByName(System.String)">
+            <summary>
+            Search Locality by name
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.LocalitiesController.GetAllLocalities(System.String)">
+            <summary>
+            Query for Localities using all or part of name
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.LocalitiesController.AddLocalityInfo(Ghana.Services.DivisionsAPI.DTOs.LocalityAdd)">
+            <summary>
+            Add new Locality to GeoGhana API
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.LocalitiesController.UpdateLocalityInfo(System.String,Ghana.Services.DivisionsAPI.DTOs.LocalityUpdate)">
+            <summary>
+            Insert Locality to GeoGhana API
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.LocalitiesController.PartialUpdatelocality(System.String,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Ghana.Services.DivisionsAPI.DTOs.LocalityUpdate})">
+            <summary>
+            Modify part of Locality information
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.LocalitiesController.RemoveLocality(System.String)">
+            <summary>
+            Remove Locality from GeoGhana API.
+            </summary>
+        </member>
+        <member name="T:Ghana.Services.DivisionsAPI.Controllers.RegionsController">
+            <summary>
+            Regions in GeoGhana API
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.RegionsController.Get">
+            <summary>
+            Gets list of all Regions in GeoGhana API
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.RegionsController.GetRegionsComplete">
+            <summary>
+            Gets full details of Regions
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.RegionsController.SearchByRegCodeAsync(System.String)">
+            <summary>
+            Search for Region by region code
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.RegionsController.SearchRegionLike(System.String)">
+            <summary>
+            Query for Region using all or part of name
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.RegionsController.AddRegionInfo(Ghana.Services.DivisionsAPI.DTOs.RegionAdd)">
+            <summary>
+            Add new Region to GeoGhana API
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.RegionsController.UpdateRegionInfoAsync(System.String,Ghana.Services.DivisionsAPI.DTOs.RegionUpdate)">
+            <summary>
+            Insert Region to GeoGhana API
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.RegionsController.PartialUpdateRegionAsync(System.String,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Ghana.Services.DivisionsAPI.DTOs.RegionUpdate})">
+            <summary>
+            Modify part of Region information
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.DivisionsAPI.Controllers.RegionsController.DeleteRegionAsync(System.String)">
+            <summary>
+            Remove Region from GeoGhana API.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ghana.Web</name>
+    </assembly>
+    <members>
+        <member name="T:Ghana.Web.Services.IDivisionsService">
+            <summary>
+            Provides an interface, pun intended, for interaction with 
+            sections of the DivisionsAPI
+            </summary>
+        </member>
+        <member name="T:Ghana.Web.Services.IPopulationService">
+            <summary>
+            Provides an interface, pun intended again, for interaction with 
+            sections of the PopulationAPI
+            </summary>
+        </member>
+    </members>
+</doc>

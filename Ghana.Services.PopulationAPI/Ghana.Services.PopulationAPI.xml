@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ghana.Services.PopulationAPI</name>
+    </assembly>
+    <members>
+        <member name="T:Ghana.Services.PopulationAPI.Controllers.PopulationController">
+            <summary>
+            Information about the population in the various Administrative Divisions of Ghana
+            </summary>
+        </member>
+        <member name="M:Ghana.Services.PopulationAPI.Controllers.PopulationController.Get">
+            <summary>
+            Get all population data from database.
+            </summary>
+            <returns>List of population data grouped by Region.</returns>
+        </member>
+    </members>
+</doc>
