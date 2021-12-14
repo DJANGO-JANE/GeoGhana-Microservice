@@ -16,7 +16,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghana.Services.DivisionsAPI", "Ghana.Services.DivisionsAPI\Ghana.Services.DivisionsAPI.csproj", "{87610E1A-D570-4FF2-AE17-7F0EFB78410F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ghana.Services.DivisionsAPI", "Ghana.Services.DivisionsAPI\Ghana.Services.DivisionsAPI.csproj", "{87610E1A-D570-4FF2-AE17-7F0EFB78410F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{028F9E47-2939-402E-B886-F9453C82AC66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,7 @@ Global
 		{9DD9E024-2445-494D-AE09-03A9AE97E43F} = {E6E68E69-A475-4523-BC00-0EE0CD0A58F2}
 		{613861E1-109A-4FC1-896A-EEBEB2020F6B} = {4838FFB4-6939-4933-BD7E-0193FBBCB0CD}
 		{87610E1A-D570-4FF2-AE17-7F0EFB78410F} = {4838FFB4-6939-4933-BD7E-0193FBBCB0CD}
+		{028F9E47-2939-402E-B886-F9453C82AC66} = {4838FFB4-6939-4933-BD7E-0193FBBCB0CD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B391688A-D94E-41BD-895F-76CA56FB0616}

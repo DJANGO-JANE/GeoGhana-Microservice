@@ -4,6 +4,28 @@
         <name>Ghana.Services.PopulationAPI</name>
     </assembly>
     <members>
+        <member name="M:Ghana.Services.PopulationAPI.Bus.IEventBus.SendCommand``1(``0)">
+            <summary>
+            Send commands on the bus.
+            </summary>
+            <typeparam name="T">Type of <see cref="T:Ghana.Services.PopulationAPI.Commands.Command"/></typeparam>
+            <param name="command">A completed task.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ghana.Services.PopulationAPI.Bus.IEventBus.Publish``1(``0)">
+            <summary>
+            Publish events to the bus.
+            </summary>
+            <typeparam name="T">Type of <see cref="T:Ghana.Services.PopulationAPI.Events.Event"/></typeparam>
+            <param name="happenstance"></param>
+        </member>
+        <member name="M:Ghana.Services.PopulationAPI.Bus.IEventBus.Subscribe``2">
+            <summary>
+            Subscribe to a published <see cref="T:Ghana.Services.PopulationAPI.Events.Event"/>
+            </summary>
+            <typeparam name="T">Event to subscribe to.</typeparam>
+            <typeparam name="TH">Event handler.</typeparam>
+        </member>
         <member name="T:Ghana.Services.PopulationAPI.Controllers.PopulationController">
             <summary>
             Information about the population in the various Administrative Divisions of Ghana
