@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using Ghana.Services.PopulationAPI.DTOs;
+using Ghana.Services.PopulationAPI.Bus;
+using Ghana.Services.PopulationAPI.Commands;
 using Ghana.Services.PopulationAPI.Models;
 using Ghana.Services.PopulationAPI.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -14,17 +15,26 @@ namespace Ghana.Services.PopulationAPI.Repository
     {
         public readonly PopulationContext _context;
         private readonly IMapper _mapper;
+        private readonly IEventBus _bus;
 
-        public PopulationRepository(PopulationContext context, IMapper mapper)
+        public PopulationRepository(PopulationContext context, IEventBus bus, IMapper mapper)
         {
             _mapper = mapper;
             _context = context;
+            _bus = bus;
         }
 
         public async Task<Population> AddPopulationData(Population population)
         {
             if (population != null)
             {
+                var div = string.Empty;
+
+                if (population.DivisionCode[^1] == 'X')
+                {
+                    var region = new RegionAdditionCommand(population.DivisionCode);
+                    _ = _bus.SendCommand(region);
+                }
                 _context.Population.Add(population);
                 _ = await _context.SaveChangesAsync();
             }

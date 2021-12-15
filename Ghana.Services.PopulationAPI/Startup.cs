@@ -1,5 +1,9 @@
+using Ghana.Services.PopulationAPI.Bus;
+using Ghana.Services.PopulationAPI.CommandHandlers;
+using Ghana.Services.PopulationAPI.Commands;
 using Ghana.Services.PopulationAPI.Persistence;
 using Ghana.Services.PopulationAPI.Repository;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -25,8 +29,10 @@ namespace Ghana.Services.PopulationAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Repositories
+            services.AddScoped<IPopulationRepository, PopulationRepository>();
 
-            services.AddControllers();
+            //UI services
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(c =>
             {
@@ -42,12 +48,18 @@ namespace Ghana.Services.PopulationAPI
                 c.IncludeXmlComments(commentsFile, includeControllerXmlComments: true);
             });
 
+            //Application Dependencies
+            services.AddControllers();
             services.AddDbContext<PopulationContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                         );
+            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
+            
+            //Commands
+            services.AddTransient<IRequestHandler<RegionAdditionCommand, bool>, AdditionCommandHandler>();
 
-            services.AddScoped<IPopulationRepository, PopulationRepository>();
-
+            //Bus
+            services.AddTransient<IEventBus, RabbitMQBus>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
