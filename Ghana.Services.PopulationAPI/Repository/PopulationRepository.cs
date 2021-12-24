@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using Ghana.Services.PopulationAPI.Bus;
+using Core.Infrastructure.Bus;
+using Ghana.Services.PopulationAPI.Application.Features;
 using Ghana.Services.PopulationAPI.Commands;
 using Ghana.Services.PopulationAPI.Models;
 using Ghana.Services.PopulationAPI.Persistence;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Ghana.Services.PopulationAPI.Repository
@@ -29,12 +31,25 @@ namespace Ghana.Services.PopulationAPI.Repository
             if (population != null)
             {
                 var div = string.Empty;
+                //var code = Int32.Parse(population.DivisionCode);
 
                 if (population.DivisionCode[^1] == 'X')
                 {
                     var region = new RegionAdditionCommand(population.DivisionCode);
                     _ = _bus.SendCommand(region);
                 }
+                else if(population.DivisionCode.Length == 2 && Regex.IsMatch(population.DivisionCode,@"^[a-zA-Z]+$"))
+                {
+                    var locality = new LocalityAdditionCommand(population.DivisionCode);
+                    _ = _bus.SendCommand(locality);
+                }
+                else if(Regex.IsMatch(population.DivisionCode, @"^[0-9]+$"))
+                {
+                    var city = new CityAdditionCommand(population.DivisionCode);
+                        _ = _bus.SendCommand(city);
+                }
+
+
                 _context.Population.Add(population);
                 _ = await _context.SaveChangesAsync();
             }

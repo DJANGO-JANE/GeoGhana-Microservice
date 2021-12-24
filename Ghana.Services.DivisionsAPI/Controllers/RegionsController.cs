@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Core.Infrastructure.Bus;
+using Ghana.Services.DivisionsAPI.Application.Features.SupplyRegionData;
 using Ghana.Services.DivisionsAPI.DTOs;
 using Ghana.Services.DivisionsAPI.Interfaces;
 using Ghana.Services.DivisionsAPI.Models;
@@ -20,11 +22,13 @@ namespace Ghana.Services.DivisionsAPI.Controllers
     {
         private readonly IRegionRepository _service;
         private readonly IMapper _mapper;
+        private readonly IEventBus _bus;
 
-        public RegionsController(IRegionRepository repository, IMapper mapper)
+        public RegionsController(IRegionRepository repository, IMapper mapper, IEventBus bus)
         {
             _service = repository;
             _mapper = mapper;
+            _bus = bus;
         }
 
         #region Get Methods
@@ -57,6 +61,9 @@ namespace Ghana.Services.DivisionsAPI.Controllers
         public async Task<ActionResult<RegionFull>> SearchByRegCodeAsync([FromQuery(Name = "code")] string regionCode)
         {
             var request = await _service.SearchRegionByCode(regionCode);
+            var searchevent = new SearchCompleted(request);
+            _bus.Publish(searchevent);
+
             if (request == null)
             {
                 return NotFound();

@@ -1,6 +1,11 @@
+using Core.Infrastructure.Bus;
+using Ghana.Services.DivisionsAPI.Application.Features.ReceiveRegionDataQuery;
+using Ghana.Services.DivisionsAPI.Application.Features.SupplyRegionData;
+using Ghana.Services.DivisionsAPI.Events;
 using Ghana.Services.DivisionsAPI.Interfaces;
 using Ghana.Services.DivisionsAPI.Persistence;
 using Ghana.Services.DivisionsAPI.Services;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -48,10 +53,21 @@ namespace Ghana.Services.DivisionsAPI
                 c.IncludeXmlComments(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, name), includeControllerXmlComments: true);
             });
 
+            //Bus
+            services.AddTransient<IEventBus, RabbitMQBus>();
+            services.AddScoped<IEventHandler<RegionQueryEvent>, AdditionEventHandler>();
+
             services.AddScoped<IRegionRepository, RegionService>();
             services.AddScoped<ICityRepository, CityService>();
             services.AddScoped<ILocalityRepository, LocalityService>();
+            services.AddMediatR(typeof(Startup));
 
+/*            services.AddSingleton<IEventBus, RabbitMQBus>(sp =>
+            {
+                var iLifetimeScope = sp.GetRequiredService<IRegionRepository>();
+
+                return new RabbitMQBus(iLifetimeScope);
+            });*/
 
         }
 
@@ -75,6 +91,16 @@ namespace Ghana.Services.DivisionsAPI
             {
                 endpoints.MapControllers();
             });
+
+            ConfigureEventBus(app);
+        }
+
+        private void ConfigureEventBus(IApplicationBuilder app)
+        {
+            var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+            //var repo = app.ApplicationServices.GetRequiredService<IRegionRepository>();
+            eventBus.Subscribe<RegionQueryEvent,AdditionEventHandler> ();
+            
         }
     }
 }

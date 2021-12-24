@@ -1,6 +1,8 @@
-using Ghana.Services.PopulationAPI.Bus;
+using Core.Infrastructure.Bus;
+using Ghana.Services.PopulationAPI.Application.Features;
 using Ghana.Services.PopulationAPI.CommandHandlers;
 using Ghana.Services.PopulationAPI.Commands;
+using Ghana.Services.PopulationAPI.Events;
 using Ghana.Services.PopulationAPI.Persistence;
 using Ghana.Services.PopulationAPI.Repository;
 using MediatR;
@@ -82,6 +84,14 @@ namespace Ghana.Services.PopulationAPI
             {
                 endpoints.MapControllers();
             });
+
+            ConfigureEventBus(app);
+        }
+
+        private void ConfigureEventBus(IApplicationBuilder app)
+        {
+            var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+            eventBus.Subscribe<SearchCompleted, RegionSearchCompleteEventHandler>();
         }
     }
 }

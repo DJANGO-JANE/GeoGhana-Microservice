@@ -17,6 +17,7 @@ namespace Ghana.Services.PopulationAPI.Profiles
             CreateMap<Population, PopulationLiteDTO>();
 
             CreateMap<Population, RegionViewDTO>();
+            CreateMap<Population, RegionFullDTO>();
             CreateMap<Population, Region>().ReverseMap();
             CreateMap<Population, RegionAdd>().ReverseMap();
 

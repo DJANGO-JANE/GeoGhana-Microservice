@@ -1,5 +1,5 @@
-﻿using Ghana.Services.PopulationAPI.Commands;
-using Ghana.Services.PopulationAPI.Events;
+﻿using Core.Infrastructure.Commands;
+using Core.Infrastructure.Infrastracture;
 using MediatR;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ghana.Services...Bus
+namespace Core.Infrastructure.Bus
 {
     public sealed class RabbitMQBus : IEventBus
     {
@@ -18,19 +18,29 @@ namespace Ghana.Services...Bus
         private readonly IMediator _mediator;
         private readonly Dictionary<string, List<Type>> _handlers;
         private readonly List<Type> _eventTypes;
+        private readonly IRegionRepository _repository;
 
+/*        public RabbitMQBus(IMediator mediator)
+        {
+            _mediator = mediator;
+            _handlers = new Dictionary<string, List<Type>>();
+            _eventTypes = new List<Type>();
+        }*/
         public RabbitMQBus(IMediator mediator)
         {
             _mediator = mediator;
             _handlers = new Dictionary<string, List<Type>>();
             _eventTypes = new List<Type>();
+            //_repository = repository;
         }
         public void Publish<T>(T happenstance) where T : Event
         {
             var factory = new ConnectionFactory()
             {
-                HostName = "localhost"
+                HostName = "localhost",
+                DispatchConsumersAsync = true
             };
+
 
 
             using (var connection = factory.CreateConnection())

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ghana.Services.PopulationAPI.Commands
+namespace Ghana.Services.DivisionsAPI.Commands
 {
     public class AdditionCommand : Command
     {
