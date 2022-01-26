@@ -19,6 +19,11 @@ namespace Ghana.Services.DivisionsAPI.Services
             _context = context;
         }
 
+        public void Add<T>(T item)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddNewRegion(Region region)
         {
             if (region == null)

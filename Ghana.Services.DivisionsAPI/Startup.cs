@@ -1,4 +1,5 @@
 using Core.Infrastructure.Bus;
+using Core.Infrastructure.Infrastracture;
 using Ghana.Services.DivisionsAPI.Application.Features.ReceiveRegionDataQuery;
 using Ghana.Services.DivisionsAPI.Application.Features.SupplyRegionData;
 using Ghana.Services.DivisionsAPI.Events;
@@ -22,6 +23,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using IRegionRepository = Ghana.Services.DivisionsAPI.Interfaces.IRegionRepository;
 
 namespace Ghana.Services.DivisionsAPI
 {
@@ -53,21 +55,21 @@ namespace Ghana.Services.DivisionsAPI
                 c.IncludeXmlComments(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, name), includeControllerXmlComments: true);
             });
 
-            //Bus
-            services.AddTransient<IEventBus, RabbitMQBus>();
-            services.AddScoped<IEventHandler<RegionQueryEvent>, AdditionEventHandler>();
-
             services.AddScoped<IRegionRepository, RegionService>();
             services.AddScoped<ICityRepository, CityService>();
             services.AddScoped<ILocalityRepository, LocalityService>();
             services.AddMediatR(typeof(Startup));
+            //Bus
+            //services.AddTransient<IEventBus, RabbitMQBus>( ops => new RabbitMQBus(ops.GetRequiredService<IMediator>(),ops.GetRequiredService<IRegionRepository>()));
+            services.AddSingleton<IEventBus, RabbitMQBus>(
+                ops =>
+                {
+                    var scopeFactory = ops.GetRequiredService<IServiceScopeFactory>();
+                    return new RabbitMQBus(ops.GetService<IMediator>(), scopeFactory);
+                });
 
-/*            services.AddSingleton<IEventBus, RabbitMQBus>(sp =>
-            {
-                var iLifetimeScope = sp.GetRequiredService<IRegionRepository>();
+            services.AddTransient<AdditionEventHandler>();
 
-                return new RabbitMQBus(iLifetimeScope);
-            });*/
 
         }
 
@@ -98,8 +100,7 @@ namespace Ghana.Services.DivisionsAPI
         private void ConfigureEventBus(IApplicationBuilder app)
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
-            //var repo = app.ApplicationServices.GetRequiredService<IRegionRepository>();
-            eventBus.Subscribe<RegionQueryEvent,AdditionEventHandler> ();
+            eventBus.Subscribe<RegionQueryEvent,AdditionEventHandler>();
             
         }
     }

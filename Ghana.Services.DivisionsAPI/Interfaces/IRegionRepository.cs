@@ -1,11 +1,12 @@
-﻿using Ghana.Services.DivisionsAPI.Models;
+﻿using Core.Infrastructure.Infrastracture;
+using Ghana.Services.DivisionsAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Ghana.Services.DivisionsAPI.Interfaces
 {
-    public interface IRegionRepository
+    public interface IRegionRepository :IRepository
     {
         bool SaveChanges();
        // Region ValidateRegionInput(Type region);

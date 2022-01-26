@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Ghana.Services.PopulationAPI.Application.Features
 {
-    public class RegionSearchCompleteEventHandler : IEventHandler<SearchCompleted>
+    public class RegionSearchCompleteEventHandler //: IEventHandler<SearchCompleted>
     {
 
         public RegionSearchCompleteEventHandler()

@@ -8,5 +8,6 @@ namespace Core.Infrastructure.Infrastracture
 {
     public interface IRepository
     {
+        void Add<T>(T item);
     }
 }

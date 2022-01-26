@@ -91,7 +91,7 @@ namespace Ghana.Services.PopulationAPI
         private void ConfigureEventBus(IApplicationBuilder app)
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
-            eventBus.Subscribe<SearchCompleted, RegionSearchCompleteEventHandler>();
+            //eventBus.Subscribe<SearchCompleted, RegionSearchCompleteEventHandler>();
         }
     }
 }
