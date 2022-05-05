@@ -12,6 +12,10 @@ namespace Ghana.Services.DivisionsAPI.Application.Features.ReceiveRegionDataQuer
     public class AdditionCommandHandler : IRequestHandler<AdditionCommand, bool>
     {
         private readonly IEventBus _bus;
+        public AdditionCommandHandler()
+        {
+
+        }
         public Task<bool> Handle(AdditionCommand request, CancellationToken cancellationToken)
         {
             return Task.FromResult(true);

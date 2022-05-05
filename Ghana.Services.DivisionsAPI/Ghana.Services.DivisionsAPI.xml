@@ -4,14 +4,6 @@
         <name>Ghana.Services.DivisionsAPI</name>
     </assembly>
     <members>
-        <member name="M:Ghana.Services.DivisionsAPI.Application.Features.ReceiveRegionDataQuery.AdditionEventHandler.#ctor(Core.Infrastructure.Bus.IEventBus,Ghana.Services.DivisionsAPI.Interfaces.IRegionRepository)">
-            <summary>
-            Handles addition events coming from the Population API.
-            
-            So far it seems to fail when I add parameters to the constructor. I cannot inject the repositories
-            
-            </summary>
-        </member>
         <member name="T:Ghana.Services.DivisionsAPI.Controllers.CitiesController">
             <summary>
             Cities in DivisionsAPI

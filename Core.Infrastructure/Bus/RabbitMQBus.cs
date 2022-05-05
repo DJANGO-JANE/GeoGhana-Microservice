@@ -20,7 +20,6 @@ namespace Core.Infrastructure.Bus
         private readonly Dictionary<string, List<Type>> _handlers;
         private readonly List<Type> _eventTypes;
         private readonly IServiceScopeFactory _serviceScopeFactory;
-        //private readonly IRepository _repository;
 
         public RabbitMQBus(IMediator mediator,IServiceScopeFactory serviceScopeFactory)
         {
@@ -29,13 +28,7 @@ namespace Core.Infrastructure.Bus
             _handlers = new Dictionary<string, List<Type>>();
             _eventTypes = new List<Type>();
         }
-        //public RabbitMQBus(IMediator mediator, IRepository repository)
-        //{
-        //    _mediator = mediator;
-        //    _handlers = new Dictionary<string, List<Type>>();
-        //    _eventTypes = new List<Type>();
-        //    //_repository = repository;
-        //}
+
         public void Publish<T>(T happenstance) where T : Event
         {
             var factory = new ConnectionFactory()

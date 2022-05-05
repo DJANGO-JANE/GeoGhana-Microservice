@@ -3,14 +3,16 @@ using Ghana.Services.DivisionsAPI.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Ghana.Services.DivisionsAPI.Migrations
 {
     [DbContext(typeof(DivisionContext))]
-    partial class DivisionContextModelSnapshot : ModelSnapshot
+    [Migration("20220505173926_SeededRegions")]
+    partial class SeededRegions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

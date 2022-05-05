@@ -24,7 +24,7 @@ namespace Ghana.Services.DivisionsAPI.Migrations
                 columns: table => new
                 {
                     CityCode = table.Column<int>(type: "int", maxLength: 2, nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "11, 11"),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     RegionName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     RegionCode = table.Column<string>(type: "nvarchar(3)", nullable: false)
